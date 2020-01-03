@@ -1,3 +1,4 @@
 Disallow: /img/
 Disallow: /css/
 Disallow: /imprint.html
+Disallow: /dsgvo.html
