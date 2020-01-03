@@ -1,0 +1,987 @@
+<html>
+<h1>System Info</h1>
+<h2>Hostname (FQDN)</h2>
+gcp-n1-standard-1-ubuntu.europe-west4-c.c.blafa.internal
+<h2>Kernel</h2>
+Linux gcp-n1-standard-1-ubuntu 4.15.0-1044-gcp #70-Ubuntu SMP Mon Sep 16 12:38:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+<h2>Date and Time</h2>
+2019-10-01 07:05:44 UTC
+<h2>Hardware Lister (lshw)</h2>
+<pre>
+gcp-n1-standard-1-ubuntu
+    description: Computer
+    product: Google Compute Engine
+    vendor: Google
+    serial: GoogleCloud-D67EF721257CB220D6A0155C65E9A114
+    width: 64 bits
+    capabilities: smbios-2.4 dmi-2.4 vsyscall32
+    configuration: boot=normal uuid=D67EF721-257C-B220-D6A0-155C65E9A114
+  *-core
+       description: Motherboard
+       product: Google Compute Engine
+       vendor: Google
+       physical id: 0
+       serial: Board-GoogleCloud-D67EF721257CB220D6A0155C65E9A114
+     *-firmware
+          description: BIOS
+          vendor: Google
+          physical id: 0
+          version: Google
+          date: 01/01/2011
+          size: 96KiB
+     *-cpu
+          description: CPU
+          product: Intel(R) Xeon(R) CPU @ 2.00GHz
+          vendor: Intel Corp.
+          physical id: 1001
+          bus info: cpu@0
+          slot: CPU 1
+          size: 2GHz
+          capacity: 2GHz
+          width: 64 bits
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp x86-64 constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves arat md_clear arch_capabilities
+     *-memory
+          description: System Memory
+          physical id: 200
+          size: 3840MiB
+          capacity: 3840MiB
+          capabilities: ecc
+          configuration: errordetection=multi-bit-ecc
+        *-bank
+             description: DIMM RAM Synchronous
+             physical id: 0
+             slot: DIMM 0
+             size: 3840MiB
+             width: 64 bits
+     *-pci
+          description: Host bridge
+          product: 440FX - 82441FX PMC [Natoma]
+          vendor: Intel Corporation
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 02
+          width: 32 bits
+          clock: 33MHz
+        *-isa
+             description: ISA bridge
+             product: 82371AB/EB/MB PIIX4 ISA
+             vendor: Intel Corporation
+             physical id: 1
+             bus info: pci@0000:00:01.0
+             version: 03
+             width: 32 bits
+             clock: 33MHz
+             capabilities: isa
+             configuration: latency=0
+        *-bridge UNCLAIMED
+             description: Bridge
+             product: 82371AB/EB/MB PIIX4 ACPI
+             vendor: Intel Corporation
+             physical id: 1.3
+             bus info: pci@0000:00:01.3
+             version: 03
+             width: 32 bits
+             clock: 33MHz
+             capabilities: bridge
+             configuration: latency=0
+        *-generic
+             description: Non-VGA unclassified device
+             product: Virtio SCSI
+             vendor: Red Hat, Inc.
+             physical id: 3
+             bus info: pci@0000:00:03.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: msix bus_master cap_list
+             configuration: driver=virtio-pci latency=0
+             resources: irq:11 ioport:c000(size=64) memory:febfe000-febfe07f
+           *-virtio0 UNCLAIMED
+                description: Virtual I/O device
+                physical id: 0
+                bus info: virtio@0
+                configuration: driver=virtio_scsi
+        *-network
+             description: Ethernet controller
+             product: Virtio network device
+             vendor: Red Hat, Inc.
+             physical id: 4
+             bus info: pci@0000:00:04.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: msix bus_master cap_list
+             configuration: driver=virtio-pci latency=0
+             resources: irq:10 ioport:c040(size=64) memory:febff000-febff03f
+           *-virtio1
+                description: Ethernet interface
+                physical id: 0
+                bus info: virtio@1
+                logical name: ens4
+                serial: 42:01:0a:a4:00:0a
+                capabilities: ethernet physical
+                configuration: autonegotiation=off broadcast=yes driver=virtio_net driverversion=1.0.0 ip=10.164.0.10 link=yes multicast=yes
+     *-scsi
+          physical id: 1
+          logical name: scsi0
+        *-disk
+             description: SCSI Disk
+             product: PersistentDisk
+             vendor: Google
+             physical id: 0.1.0
+             bus info: scsi@0:0.1.0
+             logical name: /dev/sda
+             version: 1
+             size: 250GiB (268GB)
+             capabilities: gpt-1.00 partitioned partitioned:gpt
+             configuration: ansiversion=6 guid=e13b40bc-e2f5-4a8b-9cfd-006dee5f71a5 logicalsectorsize=512 sectorsize=4096
+           *-volume:0
+                description: EXT4 volume
+                vendor: Linux
+                physical id: 1
+                bus info: scsi@0:0.1.0,1
+                logical name: /dev/sda1
+                logical name: /
+                version: 1.0
+                serial: 5682f9cc-ab7f-4e2e-85da-44b4c581de1f
+                size: 2140MiB
+                capacity: 249GiB
+                capabilities: journaled extended_attributes large_files huge_files dir_nlink recover 64bit extents ext4 ext2 initialized
+                configuration: created=2019-09-18 17:53:54 filesystem=ext4 label=cloudimg-rootfs lastmountpoint=/build/mountpoint_gce modified=2019-09-18 17:55:15 mount.fstype=ext4 mount.options=rw,relatime,data=ordered mounted=2019-10-01 07:02:08 state=mounted
+           *-volume:1
+                description: BIOS Boot partition
+                vendor: EFI
+                physical id: e
+                bus info: scsi@0:0.1.0,14
+                logical name: /dev/sda14
+                serial: cd59d42d-7a7f-4258-8488-0ec99f2ed4be
+                capacity: 4095KiB
+                capabilities: nofs
+           *-volume:2
+                description: Windows FAT volume
+                vendor: mkfs.fat
+                physical id: f
+                bus info: scsi@0:0.1.0,15
+                logical name: /dev/sda15
+                logical name: /boot/efi
+                version: FAT32
+                serial: f3d7-6368
+                size: 105MiB
+                capacity: 105MiB
+                capabilities: boot fat initialized
+                configuration: FATs=2 filesystem=fat label=UEFI mount.fstype=vfat mount.options=rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro state=mounted
+</pre>
+<h2>CPU Info</h2>
+<pre>
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 85
+model name	: Intel(R) Xeon(R) CPU @ 2.00GHz
+stepping	: 3
+microcode	: 0x1
+cpu MHz		: 2000.190
+cache size	: 39424 KB
+physical id	: 0
+siblings	: 1
+core id		: 0
+cpu cores	: 1
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves arat md_clear arch_capabilities
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs
+bogomips	: 4000.38
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+</pre>
+<h2>RAM Info</h2>
+<pre>
+MemTotal:        3781924 kB
+MemFree:         2383312 kB
+MemAvailable:    3351308 kB
+Buffers:           60228 kB
+Cached:          1077468 kB
+SwapCached:            0 kB
+Active:           560964 kB
+Inactive:         671132 kB
+Active(anon):      95088 kB
+Inactive(anon):      160 kB
+Active(file):     465876 kB
+Inactive(file):   670972 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:            223300 kB
+Writeback:             0 kB
+AnonPages:         94392 kB
+Mapped:            46312 kB
+Shmem:               872 kB
+Slab:              96336 kB
+SReclaimable:      68320 kB
+SUnreclaim:        28016 kB
+KernelStack:        1920 kB
+PageTables:         4792 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     1890960 kB
+Committed_AS:     388836 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       81908 kB
+DirectMap2M:     2801664 kB
+DirectMap1G:     1048576 kB
+</pre>
+<h2>Free</h2>
+<pre>
+              total        used        free      shared  buff/cache   available
+Mem:           3693         188        2327           0        1177        3272
+Swap:             0           0           0
+</pre>
+<h2>Network Card</h2>
+<pre>
+00:04.0 Ethernet controller [0200]: Red Hat, Inc. Virtio network device [1af4:1000]
+	Subsystem: Red Hat, Inc. Virtio network device [1af4:0001]
+	Kernel driver in use: virtio-pci
+</pre>
+<h2>Ifconfig</h2>
+<pre>
+ens4: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1460
+        inet 10.164.0.10  netmask 255.255.255.255  broadcast 0.0.0.0
+        inet6 fe80::4001:aff:fea4:a  prefixlen 64  scopeid 0x20<link>
+        ether 42:01:0a:a4:00:0a  txqueuelen 1000  (Ethernet)
+        RX packets 11865  bytes 161503870 (161.5 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 11615  bytes 950333 (950.3 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 188  bytes 19340 (19.3 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 188  bytes 19340 (19.3 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+<h2>Nameserver</h2>
+<pre>
+# This file is managed by man:systemd-resolved(8). Do not edit.
+#
+# This is a dynamic resolv.conf file for connecting local clients to the
+# internal DNS stub resolver of systemd-resolved. This file lists all
+# configured search domains.
+#
+# Run "systemd-resolve --status" to see details about the uplink DNS servers
+# currently in use.
+#
+# Third party programs must not access this file directly, but only through the
+# symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a different way,
+# replace this symlink by a static file or a different symlink.
+#
+# See man:systemd-resolved.service(8) for details about the supported modes of
+# operation for /etc/resolv.conf.
+
+nameserver 127.0.0.53
+options edns0
+search europe-west4-c.c.blafa.internal c.blafa.internal google.internal
+</pre>
+<h2>Versions</h2>
+<h3>Bash</h3>
+4.4.20(1)-release
+<h3>gcc</h3>
+<pre>
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
+OFFLOAD_TARGET_NAMES=nvptx-none
+OFFLOAD_TARGET_DEFAULT=1
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.4.0-1ubuntu1~18.04.1' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1) 
+</pre>
+<h3>make</h3>
+<pre>
+GNU Make 4.1
+Built for x86_64-pc-linux-gnu
+Copyright (C) 1988-2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+</pre>
+<h3>Perl</h3>
+<pre>
+
+This is perl 5, version 26, subversion 1 (v5.26.1) built for x86_64-linux-gnu-thread-multi
+(with 67 registered patches, see perl -V for more detail)
+
+Copyright 1987-2017, Larry Wall
+
+Perl may be copied only under the terms of either the Artistic License or the
+GNU General Public License, which may be found in the Perl 5 source kit.
+
+Complete documentation for Perl, including FAQ lists, should be found on
+this system using "man perl" or "perldoc perl".  If you have access to the
+Internet, point your browser at http://www.perl.org/, the Perl Home Page.
+
+</pre>
+<h1>Bandwidth Benchmark</h1>
+<h2>Ping (cachefly.cachefly.net)</h2>
+<pre>
+PING vip1.g.edgefly.com (205.234.175.175) 56(84) bytes of data.
+64 bytes from vip1.G-anycast1.cachefly.net (205.234.175.175): icmp_seq=1 ttl=56 time=4.53 ms
+64 bytes from vip1.G-anycast1.cachefly.net (205.234.175.175): icmp_seq=2 ttl=56 time=3.90 ms
+64 bytes from vip1.G-anycast1.cachefly.net (205.234.175.175): icmp_seq=3 ttl=56 time=3.98 ms
+64 bytes from vip1.G-anycast1.cachefly.net (205.234.175.175): icmp_seq=4 ttl=56 time=3.97 ms
+64 bytes from vip1.G-anycast1.cachefly.net (205.234.175.175): icmp_seq=5 ttl=56 time=3.89 ms
+64 bytes from vip1.G-anycast1.cachefly.net (205.234.175.175): icmp_seq=6 ttl=56 time=3.88 ms
+64 bytes from vip1.G-anycast1.cachefly.net (205.234.175.175): icmp_seq=7 ttl=56 time=3.94 ms
+64 bytes from vip1.G-anycast1.cachefly.net (205.234.175.175): icmp_seq=8 ttl=56 time=3.86 ms
+64 bytes from vip1.G-anycast1.cachefly.net (205.234.175.175): icmp_seq=9 ttl=56 time=3.97 ms
+64 bytes from vip1.G-anycast1.cachefly.net (205.234.175.175): icmp_seq=10 ttl=56 time=4.04 ms
+
+--- vip1.g.edgefly.com ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9014ms
+rtt min/avg/max/mdev = 3.865/4.000/4.533/0.195 ms
+</pre>
+<h2>Ping (hetzner.de)</h2>
+<pre>
+PING hetzner.de (78.47.166.55) 56(84) bytes of data.
+64 bytes from dedihetznernew.your-server.de (78.47.166.55): icmp_seq=1 ttl=51 time=11.0 ms
+64 bytes from dedihetznernew.your-server.de (78.47.166.55): icmp_seq=2 ttl=51 time=10.4 ms
+64 bytes from dedihetznernew.your-server.de (78.47.166.55): icmp_seq=3 ttl=51 time=10.4 ms
+64 bytes from dedihetznernew.your-server.de (78.47.166.55): icmp_seq=4 ttl=51 time=10.4 ms
+64 bytes from dedihetznernew.your-server.de (78.47.166.55): icmp_seq=5 ttl=51 time=10.5 ms
+64 bytes from dedihetznernew.your-server.de (78.47.166.55): icmp_seq=6 ttl=51 time=10.4 ms
+64 bytes from dedihetznernew.your-server.de (78.47.166.55): icmp_seq=7 ttl=51 time=10.4 ms
+64 bytes from dedihetznernew.your-server.de (78.47.166.55): icmp_seq=8 ttl=51 time=10.4 ms
+64 bytes from dedihetznernew.your-server.de (78.47.166.55): icmp_seq=9 ttl=51 time=10.4 ms
+64 bytes from dedihetznernew.your-server.de (78.47.166.55): icmp_seq=10 ttl=51 time=10.4 ms
+
+--- hetzner.de ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9014ms
+rtt min/avg/max/mdev = 10.416/10.499/11.043/0.204 ms
+</pre>
+<h2>Ping (ftp.hostserver.de)</h2>
+<pre>
+PING ftp.hostserver.de (217.31.80.35) 56(84) bytes of data.
+64 bytes from ftp.hostserver.de (217.31.80.35): icmp_seq=1 ttl=245 time=19.5 ms
+64 bytes from ftp.hostserver.de (217.31.80.35): icmp_seq=2 ttl=245 time=18.6 ms
+64 bytes from ftp.hostserver.de (217.31.80.35): icmp_seq=3 ttl=245 time=18.9 ms
+64 bytes from ftp.hostserver.de (217.31.80.35): icmp_seq=4 ttl=245 time=19.0 ms
+64 bytes from ftp.hostserver.de (217.31.80.35): icmp_seq=5 ttl=245 time=18.7 ms
+64 bytes from ftp.hostserver.de (217.31.80.35): icmp_seq=6 ttl=245 time=18.6 ms
+64 bytes from ftp.hostserver.de (217.31.80.35): icmp_seq=7 ttl=245 time=18.6 ms
+64 bytes from ftp.hostserver.de (217.31.80.35): icmp_seq=8 ttl=245 time=18.9 ms
+64 bytes from ftp.hostserver.de (217.31.80.35): icmp_seq=9 ttl=245 time=18.7 ms
+64 bytes from ftp.hostserver.de (217.31.80.35): icmp_seq=10 ttl=245 time=19.0 ms
+
+--- ftp.hostserver.de ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9014ms
+rtt min/avg/max/mdev = 18.634/18.900/19.589/0.295 ms
+</pre>
+<h2>Ping (ipv6.test-ipv6.com)</h2>
+<pre>
+connect: Network is unreachable
+</pre>
+<h2>Traceroute (cachefly.cachefly.net)</h2>
+<pre>
+traceroute to cachefly.cachefly.net (205.234.175.175), 15 hops max, 60 byte packets
+ 1  172.253.66.16 (172.253.66.16)  4.769 ms  4.786 ms 72.14.236.19 (72.14.236.19)  4.356 ms
+ 2  216.239.43.37 (216.239.43.37)  3.962 ms * 216.239.40.230 (216.239.40.230)  4.811 ms
+ 3  108.170.241.136 (108.170.241.136)  4.590 ms 108.170.241.232 (108.170.241.232)  4.526 ms  4.471 ms
+ 4  * * ae5.cr4-ams1.ip4.gtt.net (141.136.102.245)  4.666 ms
+ 5  * * *
+ 6  * vip1.G-anycast1.cachefly.net (205.234.175.175)  4.114 ms  4.049 ms
+</pre>
+<h2>Traceroute (hetzner.de)</h2>
+<pre>
+traceroute to hetzner.de (78.47.166.55), 15 hops max, 60 byte packets
+ 1  72.14.234.11 (72.14.234.11)  8.077 ms  8.144 ms 72.14.233.247 (72.14.233.247)  8.022 ms
+ 2  209.85.240.112 (209.85.240.112)  7.733 ms 108.170.228.254 (108.170.228.254)  7.523 ms 209.85.241.70 (209.85.241.70)  7.837 ms
+ 3  108.170.251.140 (108.170.251.140)  7.887 ms 108.170.251.206 (108.170.251.206)  7.624 ms 108.170.252.78 (108.170.252.78)  7.403 ms
+ 4  * * *
+ 5  core12.nbg1.hetzner.com (213.239.252.26)  11.002 ms core11.nbg1.hetzner.com (213.239.252.22)  10.980 ms core12.nbg1.hetzner.com (213.239.252.26)  11.230 ms
+ 6  ex9k2.dc1.nbg1.hetzner.com (213.239.203.214)  11.098 ms  10.451 ms  10.418 ms
+ 7  * * *
+ 8  * * *
+ 9  * * *
+10  * * *
+11  * * *
+12  * * *
+13  * * *
+14  * * *
+15  * * *
+</pre>
+<h2>Traceroute (ftp.hostserver.de)</h2>
+<pre>
+traceroute to ftp.hostserver.de (217.31.80.35), 15 hops max, 60 byte packets
+ 1  72.14.236.19 (72.14.236.19)  4.723 ms 172.253.66.16 (172.253.66.16)  5.016 ms 172.253.66.14 (172.253.66.14)  4.836 ms
+ 2  209.85.255.215 (209.85.255.215)  5.117 ms 216.239.42.210 (216.239.42.210)  4.674 ms 216.239.42.102 (216.239.42.102)  4.667 ms
+ 3  108.170.241.168 (108.170.241.168)  4.885 ms 108.170.241.166 (108.170.241.166)  4.653 ms 108.170.241.136 (108.170.241.136)  4.603 ms
+ 4  hostserver.fra.ecix.net (62.69.146.64)  19.434 ms vlan10.border4.ffm2.hostserver.de (217.31.95.165)  10.271 ms  10.155 ms
+ 5  em1.gw-149.ffm2.hostserver.de (217.31.95.149)  10.121 ms  19.327 ms  18.997 ms
+ 6  ftp.hostserver.de (217.31.80.35)  19.164 ms  9.751 ms  18.675 ms
+</pre>
+<h2>Download from Cachefly (http://cachefly.cachefly.net/100mb.test)</h2>
+<pre>
+Speed: 194180740.000
+DNS: 0.004202 sec
+Total Time: 0.540364 sec
+</pre>
+<h2>Download from Hetzner, Nuernberg, Germany (http://speed.hetzner.de/100MB.iso)</h2>
+<pre>
+Speed: 200109923.000
+DNS: 0.060518 sec
+Total Time: 0.524264 sec
+</pre>
+<h1>I/O Benchmark</h1>
+<h2>dd 1Mx1k fdatasync</h2>
+<pre>
+1024+0 records in
+1024+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 15.855 s, 67.7 MB/s
+</pre>
+<h2>dd 64kx16k fdatasync</h2>
+<pre>
+16384+0 records in
+16384+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 15.6187 s, 68.7 MB/s
+</pre>
+<h2>dd 1Mx1k dsync</h2>
+<pre>
+1024+0 records in
+1024+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 18.1867 s, 59.0 MB/s
+</pre>
+<h2>dd 64kx16k dsync</h2>
+<pre>
+16384+0 records in
+16384+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 42.4617 s, 25.3 MB/s
+</pre>
+<h2>IOPing</h2>
+<pre>
+4 KiB <<< /root/benchmark/ (ext4 /dev/sda1): request=1 time=4.25 ms (warmup)
+4 KiB <<< /root/benchmark/ (ext4 /dev/sda1): request=2 time=781 us
+4 KiB <<< /root/benchmark/ (ext4 /dev/sda1): request=3 time=11.1 ms
+4 KiB <<< /root/benchmark/ (ext4 /dev/sda1): request=4 time=1.23 ms
+4 KiB <<< /root/benchmark/ (ext4 /dev/sda1): request=5 time=1.09 ms
+4 KiB <<< /root/benchmark/ (ext4 /dev/sda1): request=6 time=3.90 ms
+4 KiB <<< /root/benchmark/ (ext4 /dev/sda1): request=7 time=1.04 ms (fast)
+4 KiB <<< /root/benchmark/ (ext4 /dev/sda1): request=8 time=887.6 us (fast)
+4 KiB <<< /root/benchmark/ (ext4 /dev/sda1): request=9 time=1.00 ms (fast)
+4 KiB <<< /root/benchmark/ (ext4 /dev/sda1): request=10 time=1.04 ms (fast)
+
+--- /root/benchmark/ (ext4 /dev/sda1) ioping statistics ---
+9 requests completed in 22.1 ms, 36 KiB read, 407 iops, 1.59 MiB/s
+generated 10 requests in 9.00 s, 40 KiB, 1 iops, 4.44 KiB/s
+min/avg/max/mdev = 781 us / 2.46 ms / 11.1 ms / 3.20 ms
+</pre>
+<h2>IOPing seek rate</h2>
+<pre>
+
+--- /root/benchmark/ (ext4 /dev/sda1) ioping statistics ---
+4.27 k requests completed in 2.99 s, 16.7 MiB read, 1.43 k iops, 5.59 MiB/s
+generated 4.28 k requests in 3.00 s, 16.7 MiB, 1.42 k iops, 5.57 MiB/s
+min/avg/max/mdev = 251.9 us / 698.8 us / 4.59 ms / 378.5 us
+</pre>
+<h2>IOPing sequential</h2>
+<pre>
+
+--- /root/benchmark/ (ext4 /dev/sda1) ioping statistics ---
+2.93 k requests completed in 2.94 s, 733.5 MiB read, 999 iops, 249.8 MiB/s
+generated 2.94 k requests in 3.00 s, 733.8 MiB, 978 iops, 244.5 MiB/s
+min/avg/max/mdev = 239.5 us / 1.00 ms / 10.1 ms / 821.4 us
+</pre>
+<h2>IOPing cached</h2>
+<pre>
+
+--- /root/benchmark/ (ext4 /dev/sda1) ioping statistics ---
+2.19 M requests completed in 2.83 s, 8.35 GiB read, 772.4 k iops, 2.95 GiB/s
+generated 2.19 M requests in 3.00 s, 8.35 GiB, 729.6 k iops, 2.78 GiB/s
+min/avg/max/mdev = 742 ns / 1.29 us / 129.5 us / 549 ns
+</pre>
+<h2>FIO full write pass</h2>
+<pre>
+writefile: (g=0): rw=write, bs=(R) 1024KiB-1024KiB, (W) 1024KiB-1024KiB, (T) 1024KiB-1024KiB, ioengine=libaio, iodepth=200
+fio-3.1
+Starting 1 process
+writefile: Laying out IO file (1 file / 10240MiB)
+
+writefile: (groupid=0, jobs=1): err= 0: pid=12825: Tue Oct  1 07:10:59 2019
+  write: IOPS=70, BW=70.4MiB/s (73.9MB/s)(10.0GiB/145368msec)
+    slat (usec): min=28, max=2831.0k, avg=7227.55, stdev=142089.11
+    clat (msec): min=52, max=5618, avg=2830.42, stdev=1622.36
+     lat (msec): min=53, max=5618, avg=2837.65, stdev=1616.33
+    clat percentiles (msec):
+     |  1.00th=[  107],  5.00th=[  313], 10.00th=[  575], 20.00th=[ 1099],
+     | 30.00th=[ 1620], 40.00th=[ 2165], 50.00th=[ 3004], 60.00th=[ 3540],
+     | 70.00th=[ 4010], 80.00th=[ 4530], 90.00th=[ 5067], 95.00th=[ 5134],
+     | 99.00th=[ 5470], 99.50th=[ 5537], 99.90th=[ 5604], 99.95th=[ 5604],
+     | 99.99th=[ 5604]
+   bw (  KiB/s): min= 2048, max=466944, per=100.00%, avg=123902.87, stdev=134721.58, samples=166
+   iops        : min=    2, max=  456, avg=120.98, stdev=131.54, samples=166
+  lat (msec)   : 100=0.84%, 250=2.87%, 500=4.79%, 750=4.95%, 1000=4.74%
+  lat (msec)   : 2000=18.78%, >=2000=63.03%
+  cpu          : usr=1.73%, sys=0.42%, ctx=5667, majf=0, minf=11
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.2%, 32=0.3%, >=64=99.4%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued rwt: total=0,10240,0, short=0,0,0, dropped=0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=200
+
+Run status group 0 (all jobs):
+  WRITE: bw=70.4MiB/s (73.9MB/s), 70.4MiB/s-70.4MiB/s (73.9MB/s-73.9MB/s), io=10.0GiB (10.7GB), run=145368-145368msec
+
+Disk stats (read/write):
+  sda: ios=0/41104, merge=0/286, ticks=0/85560660, in_queue=31284816, util=98.82%
+</pre>
+<h2>FIO rand read</h2>
+<pre>
+benchmark: (g=0): rw=randread, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=128
+...
+fio-3.1
+Starting 4 processes
+
+benchmark: (groupid=0, jobs=4): err= 0: pid=13041: Tue Oct  1 07:11:29 2019
+   read: IOPS=9790, BW=38.2MiB/s (40.1MB/s)(1150MiB/30069msec)
+    slat (usec): min=2, max=1408, avg= 7.28, stdev=10.17
+    clat (msec): min=5, max=135, avg=52.28, stdev=20.42
+     lat (msec): min=5, max=135, avg=52.29, stdev=20.42
+    clat percentiles (msec):
+     |  1.00th=[   10],  5.00th=[   12], 10.00th=[   34], 20.00th=[   34],
+     | 30.00th=[   35], 40.00th=[   36], 50.00th=[   68], 60.00th=[   68],
+     | 70.00th=[   69], 80.00th=[   69], 90.00th=[   77], 95.00th=[   78],
+     | 99.00th=[   78], 99.50th=[   79], 99.90th=[   96], 99.95th=[  115],
+     | 99.99th=[  132]
+   bw (  KiB/s): min= 7200, max=40336, per=25.11%, avg=9835.24, stdev=5118.45, samples=240
+   iops        : min= 1800, max=10084, avg=2458.50, stdev=1279.66, samples=240
+  lat (msec)   : 10=3.01%, 20=3.39%, 50=39.44%, 100=54.07%, 250=0.09%
+  cpu          : usr=0.78%, sys=2.05%, ctx=286278, majf=0, minf=551
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, >=64=99.9%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued rwt: total=294400,0,0, short=0,0,0, dropped=0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=128
+
+Run status group 0 (all jobs):
+   READ: bw=38.2MiB/s (40.1MB/s), 38.2MiB/s-38.2MiB/s (40.1MB/s-40.1MB/s), io=1150MiB (1206MB), run=30069-30069msec
+
+Disk stats (read/write):
+  sda: ios=293023/104, merge=2/16, ticks=15273812/7908, in_queue=7620996, util=99.70%
+</pre>
+<h2>FIO rand write</h2>
+<pre>
+benchmark: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=128
+...
+fio-3.1
+Starting 4 processes
+
+benchmark: (groupid=0, jobs=4): err= 0: pid=13062: Tue Oct  1 07:12:00 2019
+  write: IOPS=7426, BW=29.0MiB/s (30.4MB/s)(872MiB/30067msec)
+    slat (usec): min=2, max=66099, avg=13.31, stdev=630.49
+    clat (usec): min=703, max=136005, avg=68918.25, stdev=10452.53
+     lat (usec): min=1861, max=136009, avg=68931.71, stdev=10440.36
+    clat percentiles (msec):
+     |  1.00th=[   25],  5.00th=[   68], 10.00th=[   68], 20.00th=[   68],
+     | 30.00th=[   69], 40.00th=[   69], 50.00th=[   69], 60.00th=[   69],
+     | 70.00th=[   69], 80.00th=[   77], 90.00th=[   78], 95.00th=[   78],
+     | 99.00th=[   99], 99.50th=[  111], 99.90th=[  128], 99.95th=[  131],
+     | 99.99th=[  134]
+   bw (  KiB/s): min= 6738, max=14336, per=25.14%, avg=7467.23, stdev=838.78, samples=240
+   iops        : min= 1684, max= 3584, avg=1866.48, stdev=209.68, samples=240
+  lat (usec)   : 750=0.01%
+  lat (msec)   : 2=0.01%, 4=0.14%, 10=0.38%, 20=0.32%, 50=3.03%
+  lat (msec)   : 100=95.20%, 250=0.94%
+  cpu          : usr=0.58%, sys=1.46%, ctx=170886, majf=0, minf=39
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, >=64=99.9%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued rwt: total=0,223289,0, short=0,0,0, dropped=0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=128
+
+Run status group 0 (all jobs):
+  WRITE: bw=29.0MiB/s (30.4MB/s), 29.0MiB/s-29.0MiB/s (30.4MB/s-30.4MB/s), io=872MiB (915MB), run=30067-30067msec
+
+Disk stats (read/write):
+  sda: ios=0/221997, merge=0/20, ticks=0/15188576, in_queue=7597832, util=99.70%
+</pre>
+<h1>SysBench</h1>
+<h2>SysBench Single-Core CPU performance test (1 thread)</h2>
+<pre>
+sysbench 1.0.11 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   370.28
+
+General statistics:
+    total time:                          10.0013s
+    total number of events:              3704
+
+Latency (ms):
+         min:                                  2.67
+         avg:                                  2.70
+         max:                                  2.98
+         95th percentile:                      2.71
+         sum:                               9998.91
+
+Threads fairness:
+    events (avg/stddev):           3704.0000/0.00
+    execution time (avg/stddev):   9.9989/0.00
+
+</pre>
+<h2>SysBench Multi-Core CPU performance test (1 threads)</h2>
+<pre>
+sysbench 1.0.11 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Prime numbers limit: 20000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:   369.63
+
+General statistics:
+    total time:                          10.0027s
+    total number of events:              3698
+
+Latency (ms):
+         min:                                  2.64
+         avg:                                  2.70
+         max:                                  6.82
+         95th percentile:                      2.71
+         sum:                              10000.30
+
+Threads fairness:
+    events (avg/stddev):           3698.0000/0.00
+    execution time (avg/stddev):   10.0003/0.00
+
+</pre>
+<h2>SysBench Memory functions speed test</h2>
+<pre>
+sysbench 1.0.11 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 1KiB
+  total size: 102400MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 37660002 (3765228.03 per second)
+
+36777.35 MiB transferred (3676.98 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0001s
+    total number of events:              37660002
+
+Latency (ms):
+         min:                                  0.00
+         avg:                                  0.00
+         max:                                  0.32
+         95th percentile:                      0.00
+         sum:                               4392.15
+
+Threads fairness:
+    events (avg/stddev):           37660002.0000/0.00
+    execution time (avg/stddev):   4.3922/0.00
+
+</pre>
+<h1>UnixBench</h1>
+<pre>
+make all
+make[1]: Entering directory '/root/benchmark/UnixBench'
+Checking distribution of files
+./pgms  exists
+./src  exists
+./testdir  exists
+./tmp  exists
+./results  exists
+make[1]: Leaving directory '/root/benchmark/UnixBench'
+sh: 1: 3dinfo: not found
+
+   #    #  #    #  #  #    #          #####   ######  #    #   ####   #    #
+   #    #  ##   #  #   #  #           #    #  #       ##   #  #    #  #    #
+   #    #  # #  #  #    ##            #####   #####   # #  #  #       ######
+   #    #  #  # #  #    ##            #    #  #       #  # #  #       #    #
+   #    #  #   ##  #   #  #           #    #  #       #   ##  #    #  #    #
+    ####   #    #  #  #    #          #####   ######  #    #   ####   #    #
+
+   Version 5.1.3                      Based on the Byte Magazine Unix Benchmark
+
+   Multi-CPU version                  Version 5 revisions by Ian Smith,
+                                      Sunnyvale, CA, USA
+   January 13, 2011                   johantheghost at yahoo period com
+
+
+1 x Dhrystone 2 using register variables  1 2 3 4 5 6 7 8 9 10
+
+1 x Double-Precision Whetstone  1 2 3 4 5 6 7 8 9 10
+
+1 x Execl Throughput  1 2 3
+
+1 x File Copy 1024 bufsize 2000 maxblocks  1 2 3
+
+1 x File Copy 256 bufsize 500 maxblocks  1 2 3
+
+1 x File Copy 4096 bufsize 8000 maxblocks  1 2 3
+
+1 x Pipe Throughput  1 2 3 4 5 6 7 8 9 10
+
+1 x Pipe-based Context Switching  1 2 3 4 5 6 7 8 9 10
+
+1 x Process Creation  1 2 3
+
+1 x System Call Overhead  1 2 3 4 5 6 7 8 9 10
+
+1 x Shell Scripts (1 concurrent)  1 2 3
+
+1 x Shell Scripts (8 concurrent)  1 2 3
+
+1 x Dhrystone 2 using register variables  1 2 3 4 5 6 7 8 9 10
+
+1 x Double-Precision Whetstone  1 2 3 4 5 6 7 8 9 10
+
+1 x Execl Throughput  1 2 3
+
+1 x File Copy 1024 bufsize 2000 maxblocks  1 2 3
+
+1 x File Copy 256 bufsize 500 maxblocks  1 2 3
+
+1 x File Copy 4096 bufsize 8000 maxblocks  1 2 3
+
+1 x Pipe Throughput  1 2 3 4 5 6 7 8 9 10
+
+1 x Pipe-based Context Switching  1 2 3 4 5 6 7 8 9 10
+
+1 x Process Creation  1 2 3
+
+1 x System Call Overhead  1 2 3 4 5 6 7 8 9 10
+
+1 x Shell Scripts (1 concurrent)  1 2 3
+
+1 x Shell Scripts (8 concurrent)  1 2 3
+
+========================================================================
+   BYTE UNIX Benchmarks (Version 5.1.3)
+
+   System: gcp-n1-standard-1-ubuntu: GNU/Linux
+   OS: GNU/Linux -- 4.15.0-1044-gcp -- #70-Ubuntu SMP Mon Sep 16 12:38:02 UTC 2019
+   Machine: x86_64 (x86_64)
+   Language: en_US.utf8 (charmap="UTF-8", collate="UTF-8")
+   CPU 0: Intel(R) Xeon(R) CPU @ 2.00GHz (4000.4 bogomips)
+          Hyper-Threading, x86-64, MMX, Physical Address Ext, SYSENTER/SYSEXIT, SYSCALL/SYSRET
+   07:12:30 up 10 min,  1 user,  load average: 10.12, 13.90, 6.39; runlevel 5
+
+------------------------------------------------------------------------
+Benchmark Run: Tue Oct 01 2019 07:12:30 - 07:40:34
+1 CPU in system; running 1 parallel copy of tests
+
+Dhrystone 2 using register variables       32497180.9 lps   (10.0 s, 7 samples)
+Double-Precision Whetstone                     4648.5 MWIPS (9.6 s, 7 samples)
+Execl Throughput                               3412.4 lps   (30.0 s, 2 samples)
+File Copy 1024 bufsize 2000 maxblocks        500029.8 KBps  (30.0 s, 2 samples)
+File Copy 256 bufsize 500 maxblocks          141056.5 KBps  (30.0 s, 2 samples)
+File Copy 4096 bufsize 8000 maxblocks       1287795.0 KBps  (30.0 s, 2 samples)
+Pipe Throughput                              729197.0 lps   (10.0 s, 7 samples)
+Pipe-based Context Switching                 181164.4 lps   (10.0 s, 7 samples)
+Process Creation                               9314.9 lps   (30.0 s, 2 samples)
+Shell Scripts (1 concurrent)                   7102.1 lpm   (60.0 s, 2 samples)
+Shell Scripts (8 concurrent)                    915.4 lpm   (60.0 s, 2 samples)
+System Call Overhead                         439037.9 lps   (10.0 s, 7 samples)
+
+System Benchmarks Index Values               BASELINE       RESULT    INDEX
+Dhrystone 2 using register variables         116700.0   32497180.9   2784.7
+Double-Precision Whetstone                       55.0       4648.5    845.2
+Execl Throughput                                 43.0       3412.4    793.6
+File Copy 1024 bufsize 2000 maxblocks          3960.0     500029.8   1262.7
+File Copy 256 bufsize 500 maxblocks            1655.0     141056.5    852.3
+File Copy 4096 bufsize 8000 maxblocks          5800.0    1287795.0   2220.3
+Pipe Throughput                               12440.0     729197.0    586.2
+Pipe-based Context Switching                   4000.0     181164.4    452.9
+Process Creation                                126.0       9314.9    739.3
+Shell Scripts (1 concurrent)                     42.4       7102.1   1675.0
+Shell Scripts (8 concurrent)                      6.0        915.4   1525.7
+System Call Overhead                          15000.0     439037.9    292.7
+                                                                   ========
+System Benchmarks Index Score                                         965.4
+
+------------------------------------------------------------------------
+Benchmark Run: Tue Oct 01 2019 07:40:34 - 08:08:38
+1 CPU in system; running 1 parallel copy of tests
+
+Dhrystone 2 using register variables       32405429.9 lps   (10.0 s, 7 samples)
+Double-Precision Whetstone                     4648.7 MWIPS (9.6 s, 7 samples)
+Execl Throughput                               3430.2 lps   (30.0 s, 2 samples)
+File Copy 1024 bufsize 2000 maxblocks        497759.8 KBps  (30.0 s, 2 samples)
+File Copy 256 bufsize 500 maxblocks          133682.1 KBps  (30.0 s, 2 samples)
+File Copy 4096 bufsize 8000 maxblocks       1175794.9 KBps  (30.0 s, 2 samples)
+Pipe Throughput                              694612.4 lps   (10.0 s, 7 samples)
+Pipe-based Context Switching                 176291.6 lps   (10.0 s, 7 samples)
+Process Creation                               8192.0 lps   (30.0 s, 2 samples)
+Shell Scripts (1 concurrent)                   6696.3 lpm   (60.0 s, 2 samples)
+Shell Scripts (8 concurrent)                    849.1 lpm   (60.0 s, 2 samples)
+System Call Overhead                         422438.5 lps   (10.0 s, 7 samples)
+
+System Benchmarks Index Values               BASELINE       RESULT    INDEX
+Dhrystone 2 using register variables         116700.0   32405429.9   2776.8
+Double-Precision Whetstone                       55.0       4648.7    845.2
+Execl Throughput                                 43.0       3430.2    797.7
+File Copy 1024 bufsize 2000 maxblocks          3960.0     497759.8   1257.0
+File Copy 256 bufsize 500 maxblocks            1655.0     133682.1    807.7
+File Copy 4096 bufsize 8000 maxblocks          5800.0    1175794.9   2027.2
+Pipe Throughput                               12440.0     694612.4    558.4
+Pipe-based Context Switching                   4000.0     176291.6    440.7
+Process Creation                                126.0       8192.0    650.2
+Shell Scripts (1 concurrent)                     42.4       6696.3   1579.3
+Shell Scripts (8 concurrent)                      6.0        849.1   1415.2
+System Call Overhead                          15000.0     422438.5    281.6
+                                                                   ========
+System Benchmarks Index Score                                         924.2
+
+</pre>
+<h1>Geekbench 5</h1>
+<pre>
+Geekbench 5.0.2 : https://www.geekbench.com/
+
+System Information
+  Operating System              Ubuntu 18.04.3 LTS 4.15.0-1044-gcp x86_64
+  Model                         Google Google Compute Engine
+  Motherboard                   Google Google Compute Engine
+  BIOS                          Google Google
+
+Processor Information
+  Name                                     Intel(R) Xeon(R) CPU @ 2.00GHz
+  Topology                      1 Processor, 1 Core
+  Identifier                    GenuineIntel Family 6 Model 85 Stepping 3
+  Base Frequency                2.00 GHz
+  L1 Instruction Cache          32.0 KB
+  L1 Data Cache                 32.0 KB
+  L2 Cache                      1.00 MB
+  L3 Cache                      38.5 MB
+
+Memory Information
+  Size                          3.61 GB
+
+
+Single-Core
+  AES-XTS                         914              1.56 GB/sec
+  Text Compression                547              2.77 MB/sec
+  Image Compression               700         33.1 Mpixels/sec
+  Navigation                      553             1.56 MTE/sec
+  HTML5                           694      814.4 KElements/sec
+  SQLite                          708          221.7 Krows/sec
+  PDF Rendering                   680         36.9 Mpixels/sec
+  Text Rendering                  508             161.9 KB/sec
+  Clang                           713          5.55 Klines/sec
+  Camera                          702          8.13 images/sec
+  N-Body Physics                  556         696.3 Kpairs/sec
+  Rigid Body Physics              777               4815.8 FPS
+  Gaussian Blur                   589         32.4 Mpixels/sec
+  Face Detection                  709          5.46 images/sec
+  Horizon Detection               663         16.4 Mpixels/sec
+  Image Inpainting                670         32.9 Mpixels/sec
+  HDR                            1462         19.9 Mpixels/sec
+  Ray Tracing                     977        784.7 Kpixels/sec
+  Structure from Motion           699         6.26 Kpixels/sec
+  Speech Recognition              473           15.1 Words/sec
+  Machine Learning                426          16.5 images/sec
+
+Multi-Core
+  AES-XTS                         917              1.56 GB/sec
+  Text Compression                471              2.38 MB/sec
+  Image Compression               673         31.8 Mpixels/sec
+  Navigation                      516             1.45 MTE/sec
+  HTML5                           622      729.9 KElements/sec
+  SQLite                          653          204.7 Krows/sec
+  PDF Rendering                   628         34.1 Mpixels/sec
+  Text Rendering                  396             126.0 KB/sec
+  Clang                           636          4.96 Klines/sec
+  Camera                          655          7.59 images/sec
+  N-Body Physics                  447         559.7 Kpairs/sec
+  Rigid Body Physics              672               4166.0 FPS
+  Gaussian Blur                   549         30.2 Mpixels/sec
+  Face Detection                  641          4.93 images/sec
+  Horizon Detection               631         15.6 Mpixels/sec
+  Image Inpainting                585         28.7 Mpixels/sec
+  HDR                            1412         19.2 Mpixels/sec
+  Ray Tracing                     938        753.1 Kpixels/sec
+  Structure from Motion           662         5.93 Kpixels/sec
+  Speech Recognition              467           14.9 Words/sec
+  Machine Learning                436          16.9 images/sec
+
+Benchmark Summary
+  Single-Core Score              668
+    Crypto Score                   914
+    Integer Score                  640
+    Floating Point Score           687
+  Multi-Core Score               611
+    Crypto Score                   917
+    Integer Score                  575
+    Floating Point Score           637
+
+</pre>
+<h1>Uptime (Load Average)</h1>
+<pre>
+ 08:11:24 up  1:09,  2 users,  load average: 1.12, 2.53, 2.12
+</pre>
+<h1>Complete Duration</h1>
+<ul>
+    <li>Start: 1569913544</li>
+    <li>End: 1569917484</li>
+    <li><b>Duration: 3940 sec / 65.00 min</b></li>
+</ul>
+<hr>
+benchmark.sh - 2019-10-01 07:05:44 UTC
+</html>
