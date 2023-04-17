@@ -1,4 +1,10 @@
 Disallow: /img/
 Disallow: /css/
+Disallow: /backup/
+Disallow: /benchmark_demo/
+Disallow: /cdn-cgi/
+Disallow: /index.html
+Disallow: /404.html
 Disallow: /imprint.html
 Disallow: /dsgvo.html
+Disallow: /ci.txt
