@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Editor</title>
+    <link rel="canonical" href="https://www.nkn-it.de/mk-editor.html">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" integrity="sha512-rPuOZPx/WHMHNx2RoALKwiCDiDrCo4ekUctyTYKzBo8NGA79NcTW2gfrbcCL2RYL7RdjX2v9zR0fKyI4U4kPew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.4/purify.min.js" integrity="sha512-Y1p/STLW/B+l+MPJ5K5OdILMwJa2gMFXXmC/qsyDuGH9uc1MZMUo6/8YQUg9Ut4ns8KGCrCtt+58UwmNFFiVvA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+        .toast.show {
+            opacity: 1;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        .panel-header {
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.9rem;
+            color: #555;
+            flex-shrink: 0;
+        }
+        .editor-container, .preview-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .editor-container {
+            border-right: 1px solid #ccc;
+        }
+        .editor, .preview {
+            flex: 1;
+            overflow: auto;
+            padding: 10px;
+        }
+        #markdown-input {
+            width: 100%;
+            height: 99%;
+            border: none;
+            resize: none;
+            font-family: monospace;
+            font-size: 16px;
+            outline: none;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+        }
+        .preview {
+            background-color: #fff;
+        }
+        .preview h1, .preview h2, .preview h3 {
+            color: #333;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+        .preview code {
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .preview pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .preview blockquote {
+            border-left: 4px solid #ccc;
+            padding-left: 10px;
+            margin-left: 0;
+            color: #666;
+        }
+        .preview table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        .preview th, .preview td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .preview tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .preview img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .editor-container {
+                border-right: none;
+                border-bottom: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+<h1>Markdown Editor</h1>
+<div class="controls"><button id="copy-html-btn" title="Copy HTML to clipboard">Copy HTML</button></div>
+</header>
+<main>
+<div id="toast" class="toast">HTML copied to clipboard!</div>
+<div class="container">
+<div class="editor-container">
+<div class="panel-header">Markdown</div>
+<div class="editor">
+<textarea id="markdown-input" placeholder="Write your Markdown here...">
+# Welcome to Markdown Editor!
+
+This is a simple Markdown editor that allows you to write Markdown on the left side and see the rendered HTML on the right side in real-time. You can copy the generated HTML to your clipboard by clicking the "Copy HTML" button.
+
+![Image](https://www.nkn-it.de/apple-touch-icon.png)
+
+## Basic formatting
+
+**Bold text** and *italic text*
+
+### Lists
+
+- Item 1
+- Item 2
+    - Nested item
+
+### Code
+
+```javascript
+function hello() {
+    console.log('Hello, world!');
+}
+```
+
+### Blockquotes
+
+> This is a blockquote
+> It can span multiple lines
+
+
+### Tables
+
+| Header 1 | Header 2 |
+|----------|----------|
+| Cell 1   | Cell 2   |
+| Cell 3   | Cell 4   |
+
+
+### Horizontal Rule
+
+---
+or
+***
+or
+___
+
+[Link](https://www.nkn-it.de/)
+</textarea>
+</div>
+</div>
+<div class="preview-container">
+<div class="panel-header">HTML Preview</div>
+<div class="preview" id="html-output">
+<!-- Rendered HTML will appear here -->
+</div>
+</div>
+</div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const markdownInput = document.getElementById('markdown-input');
+    const htmlOutput = document.getElementById('html-output');
+    const copyHtmlBtn = document.getElementById('copy-html-btn');
+    const toast = document.getElementById('toast');
+
+    // Configure marked options
+    marked.setOptions({
+        breaks: true,    // Add line breaks in paragraphs where newlines occur
+        gfm: true,       // GitHub Flavored Markdown
+        headerIds: true, // Add IDs to headings
+    });
+
+    // Function to convert markdown to HTML and display it
+    function renderMarkdown() {
+        const markdownText = markdownInput.value;
+        // Convert markdown to HTML using marked library
+        const rawHtml = marked.parse(markdownText);
+        // Sanitize HTML to prevent XSS attacks
+        const cleanHtml = DOMPurify.sanitize(rawHtml);
+        // Display the HTML
+        htmlOutput.innerHTML = cleanHtml;
+    }
+
+    // Copy HTML to clipboard
+    copyHtmlBtn.addEventListener('click', async function() {
+        // Get the HTML content
+        const htmlContent = htmlOutput.innerHTML;
+        try {
+            // Use modern clipboard API
+            await navigator.clipboard.writeText(htmlContent);
+            // Show toast notification
+            toast.classList.add('show');
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 2000);
+        } catch (err) {
+            // Fallback for older browsers
+            alert('Failed to copy HTML to clipboard');
+        }
+    });
+    // Initial render
+    renderMarkdown();
+    // Update preview when markdown is edited
+    markdownInput.addEventListener('input', renderMarkdown);
+});
+</script>
+</body>
+</html>
