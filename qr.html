@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="canonical" href="https://www.nkn-it.de/qr.html">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js" integrity="sha512-NFUcDlm4V+a2sjPX7gREIXgCSFja9cHtKPOL1zj6QhnE0vcY695MODehqkaGYTLyL2wxe/wtr4Z49SvqXq12UQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        .panel-header {
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.9rem;
+            color: #555;
+            flex-shrink: 0;
+        }
+        .input-container, .output-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .input-container {
+            border-right: 1px solid #ccc;
+        }
+        .input-area, .output-area {
+            flex: 1;
+            overflow: auto;
+            padding: 20px;
+        }
+        .input-area form {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .output-area {
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #qrcode {
+            margin: 20px 0;
+            text-align: center;
+        }
+        #qrcode canvas {
+            margin: 0 auto;
+        }
+        .qr-text {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+            word-break: break-all;
+            text-align: center;
+            max-width: 80%;
+        }
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .input-container {
+                border-right: none;
+                border-bottom: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>QR Code Generator</h1>
+        <div class="controls">
+            <button id="download-btn" title="Download QR Code">Download QR</button>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="input-container">
+                <div class="panel-header">Input</div>
+                <div class="input-area">
+                    <form id="qr-form">
+                        <div class="form-group">
+                            <label for="text">Enter text or URL</label>
+                            <input type="text" class="form-control" id="text" value="https://github.com/Cyclenerd" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="size">QR Code Size</label>
+                            <select class="form-control" id="size">
+                                <option value="100">Small (100x100)</option>
+                                <option value="200" selected>Medium (200x200)</option>
+                                <option value="300">Large (300x300)</option>
+                                <option value="400">Extra Large (400x400)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn">Generate QR Code</button>
+                    </form>
+                </div>
+            </div>
+            <div class="output-container">
+                <div class="panel-header">QR Code Preview</div>
+                <div class="output-area">
+                    <div id="qrcode"></div>
+                    <p class="qr-text" id="qr-text"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        $(document).ready(function() {
+            // Generate QR code on form submit
+            $('#qr-form').submit(function(event) {
+                event.preventDefault();
+                generateQR();
+            });
+            // Generate QR on page load with default value
+            generateQR();
+            // Download QR code
+            $('#download-btn').click(function() {
+                downloadQR();
+            });
+            function generateQR() {
+                // Clear previous QR code
+                $('#qrcode').empty();
+                // Get input values
+                const text = $('#text').val();
+                const size = parseInt($('#size').val());
+                // Generate QR code
+                $('#qrcode').qrcode({
+                    text: text,
+                    width: size,
+                    height: size
+                });
+                // Update text display
+                $('#qr-text').text(text);
+            }
+            function downloadQR() {
+                // Get the canvas element
+                const canvas = $('#qrcode canvas')[0];
+                if (canvas) {
+                    // Create a temporary link
+                    const link = document.createElement('a');
+                    link.download = 'qrcode.png';
+                    link.href = canvas.toDataURL('image/png');
+                    
+                    // Trigger download
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
