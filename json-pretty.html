@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Pretty</title>
+    <link rel="canonical" href="https://www.nkn-it.de/json-pretty.html">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+        .toast.show {
+            opacity: 1;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        .panel-header {
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.9rem;
+            color: #555;
+            flex-shrink: 0;
+        }
+        .editor-container, .preview-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .editor-container {
+            border-right: 1px solid #ccc;
+        }
+        .editor, .preview {
+            flex: 1;
+            overflow: auto;
+            padding: 10px;
+        }
+        #json-input {
+            width: 100%;
+            height: 99%;
+            border: none;
+            resize: none;
+            font-family: monospace;
+            font-size: 16px;
+            outline: none;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+        }
+        #json-output {
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .string { color: #008000; }
+        .number { color: #0000ff; }
+        .boolean { color: #b22222; }
+        .null { color: #808080; }
+        .key { color: #a52a2a; }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .editor-container {
+                border-right: none;
+                border-bottom: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+<h1>JSON Pretty</h1>
+<div class="controls">
+    <button id="copy-json-btn" title="Copy prettified JSON to clipboard">Copy JSON</button>
+    <button id="format-btn" title="Format JSON">Format</button>
+    <button id="minify-btn" title="Minify JSON">Minify</button>
+</div>
+</header>
+<main>
+<div id="toast" class="toast">JSON copied to clipboard!</div>
+<div class="container">
+<div class="editor-container">
+<div class="panel-header">Plain</div>
+<div class="editor">
+<textarea id="json-input" placeholder="Paste your JSON here...">
+{
+  "name": "JSON",
+  "version": "1.0.0",
+  "description": "A simple tool to prettify JSON data",
+  "features": ["Format JSON", "Syntax highlighting", "Copy to clipboard"],
+  "isAwesome": true,
+  "author": {
+    "name": "Nils",
+    "website": "https://www.nkn-it.de/"
+  },
+  "stats": {
+    "users": 1000,
+    "rating": 4.9
+  },
+  "tags": ["json", "formatter", "prettifier", "tool"],
+  "lastUpdated": "2023-07-15"
+}
+</textarea>
+</div>
+</div>
+<div class="preview-container">
+<div class="panel-header">Pretty</div>
+<div class="preview" id="json-output">
+<!-- Prettified JSON will appear here -->
+</div>
+</div>
+</div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const jsonInput = document.getElementById('json-input');
+    const jsonOutput = document.getElementById('json-output');
+    const copyJsonBtn = document.getElementById('copy-json-btn');
+    const formatBtn = document.getElementById('format-btn');
+    const minifyBtn = document.getElementById('minify-btn');
+    const toast = document.getElementById('toast');
+
+    // Function to prettify JSON with syntax highlighting
+    function prettifyJson(jsonStr, spaces = 2) {
+        try {
+            // Parse JSON to ensure it's valid
+            const obj = JSON.parse(jsonStr);
+            
+            // Convert back to string with proper indentation
+            const prettified = JSON.stringify(obj, null, spaces);
+            
+            // Add syntax highlighting
+            const highlighted = prettified.replace(
+                /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+                function(match) {
+                    let cls = 'number';
+                    if (/^"/.test(match)) {
+                        if (/:$/.test(match)) {
+                            cls = 'key';
+                            // Remove the colon from the match for proper coloring
+                            match = match.replace(':', '');
+                        } else {
+                            cls = 'string';
+                        }
+                    } else if (/true|false/.test(match)) {
+                        cls = 'boolean';
+                    } else if (/null/.test(match)) {
+                        cls = 'null';
+                    }
+                    return '<span class="' + cls + '">' + match + '</span>';
+                }
+            );
+            
+            // Add the colon back with proper spacing for key-value pairs
+            return highlighted.replace(/"<\/span>(\s*)/, '"</span>: ');
+            
+        } catch (e) {
+            return '<span class="error">Invalid JSON: ' + e.message + '</span>';
+        }
+    }
+
+    // Function to minify JSON
+    function minifyJson(jsonStr) {
+        try {
+            const obj = JSON.parse(jsonStr);
+            return JSON.stringify(obj);
+        } catch (e) {
+            return 'Invalid JSON: ' + e.message;
+        }
+    }
+
+    // Function to render JSON
+    function renderJson(spaces = 2) {
+        const jsonText = jsonInput.value;
+        jsonOutput.innerHTML = prettifyJson(jsonText, spaces);
+    }
+
+    // Copy JSON to clipboard
+    copyJsonBtn.addEventListener('click', async function() {
+        try {
+            // Try to parse the JSON to make sure it's valid
+            const jsonText = jsonInput.value;
+            const obj = JSON.parse(jsonText);
+            
+            // Get the prettified JSON (without HTML formatting)
+            const prettified = JSON.stringify(obj, null, 2);
+            
+            // Copy to clipboard
+            await navigator.clipboard.writeText(prettified);
+            
+            // Show toast notification
+            toast.textContent = "JSON copied to clipboard!";
+            toast.classList.add('show');
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 2000);
+        } catch (err) {
+            // Show error in toast
+            toast.textContent = "Error: Invalid JSON";
+            toast.classList.add('show');
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+    });
+
+    // Format JSON button
+    formatBtn.addEventListener('click', function() {
+        renderJson(2);
+    });
+
+    // Minify JSON button
+    minifyBtn.addEventListener('click', function() {
+        try {
+            const jsonText = jsonInput.value;
+            const minified = minifyJson(jsonText);
+            jsonInput.value = minified;
+            renderJson(2); // Still show prettified in the output
+        } catch (err) {
+            jsonOutput.innerHTML = '<span class="error">Invalid JSON: ' + err.message + '</span>';
+        }
+    });
+
+    // Initial render
+    renderJson();
+    
+    // Update preview when JSON is edited
+    jsonInput.addEventListener('input', function() {
+        renderJson();
+    });
+});
+</script>
+</body>
+</html>
