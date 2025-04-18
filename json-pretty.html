@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON Pretty</title>
     <link rel="canonical" href="https://www.nkn-it.de/json-pretty.html">
+    <!-- Add highlight.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css" integrity="sha512-hasIneQUHlh06VNBe7f6ZcHmeRTLIaQWFd43YriJ0UND19bvYRauxthDg8E4eVNPm9bRUhr5JGeqH7FRFXQu5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         * {
             box-sizing: border-box;
@@ -120,12 +122,15 @@
         .error {
             color: red;
             font-weight: bold;
+            font-family: monospace;
+            white-space: pre-wrap;
         }
-        .string { color: #008000; }
-        .number { color: #0000ff; }
-        .boolean { color: #b22222; }
-        .null { color: #808080; }
-        .key { color: #a52a2a; }
+        
+        /* Override highlight.js styles to fit our theme */
+        .hljs {
+            background: transparent;
+            padding: 0;
+        }
         
         /* Responsive design */
         @media (max-width: 768px) {
@@ -147,6 +152,7 @@
     <button id="copy-json-btn" title="Copy prettified JSON to clipboard">Copy JSON</button>
     <button id="format-btn" title="Format JSON">Format</button>
     <button id="minify-btn" title="Minify JSON">Minify</button>
+    <button id="clear-btn" title="Clear JSON">Clear</button>
 </div>
 </header>
 <main>
@@ -157,7 +163,7 @@
 <div class="editor">
 <textarea id="json-input" placeholder="Paste your JSON here...">
 {
-  "name": "JSON",
+  "name": "JSON Pretty",
   "version": "1.0.0",
   "description": "A simple tool to prettify JSON data",
   "features": ["Format JSON", "Syntax highlighting", "Copy to clipboard"],
@@ -184,6 +190,10 @@
 </div>
 </div>
 </main>
+<!-- Add highlight.js library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js" integrity="sha512-EBLzUL8XLl+va/zAsmXwS7Z2B1F9HUHkZwyS/VKwh3S7T/U0nF4BaU29EP/ZSf6zgiIxYAnKLu6bJ8dqpmX5uw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Add JSON language support -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/json.min.js" integrity="sha512-f2/ljYb/tG4fTHu6672tyNdoyhTIpt4N1bGrBE8ZjwIgrjDCd+rljLpWCZ2Vym9PBWQy2Tl9O22Pp2rMOMvH4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const jsonInput = document.getElementById('json-input');
@@ -191,9 +201,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const copyJsonBtn = document.getElementById('copy-json-btn');
     const formatBtn = document.getElementById('format-btn');
     const minifyBtn = document.getElementById('minify-btn');
+    const clearBtn = document.getElementById('clear-btn');
     const toast = document.getElementById('toast');
 
-    // Function to prettify JSON with syntax highlighting
+    // Function to prettify JSON with highlight.js
     function prettifyJson(jsonStr, spaces = 2) {
         try {
             // Parse JSON to ensure it's valid
@@ -202,33 +213,19 @@ document.addEventListener('DOMContentLoaded', function() {
             // Convert back to string with proper indentation
             const prettified = JSON.stringify(obj, null, spaces);
             
-            // Add syntax highlighting
-            const highlighted = prettified.replace(
-                /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
-                function(match) {
-                    let cls = 'number';
-                    if (/^"/.test(match)) {
-                        if (/:$/.test(match)) {
-                            cls = 'key';
-                            // Remove the colon from the match for proper coloring
-                            match = match.replace(':', '');
-                        } else {
-                            cls = 'string';
-                        }
-                    } else if (/true|false/.test(match)) {
-                        cls = 'boolean';
-                    } else if (/null/.test(match)) {
-                        cls = 'null';
-                    }
-                    return '<span class="' + cls + '">' + match + '</span>';
-                }
-            );
+            // Create a pre element with the JSON code
+            const preElement = document.createElement('pre');
+            const codeElement = document.createElement('code');
+            codeElement.className = 'language-json';
+            codeElement.textContent = prettified;
+            preElement.appendChild(codeElement);
             
-            // Add the colon back with proper spacing for key-value pairs
-            return highlighted.replace(/"<\/span>(\s*)/, '"</span>: ');
+            // Apply highlight.js to the code
+            hljs.highlightElement(codeElement);
             
+            return preElement.outerHTML;
         } catch (e) {
-            return '<span class="error">Invalid JSON: ' + e.message + '</span>';
+            return '<pre class="error">Invalid JSON: ' + e.message + '</pre>';
         }
     }
 
@@ -279,7 +276,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Format JSON button
     formatBtn.addEventListener('click', function() {
-        renderJson(2);
+        try {
+            const jsonText = jsonInput.value;
+            const obj = JSON.parse(jsonText);
+            jsonInput.value = JSON.stringify(obj, null, 2);
+            renderJson(2);
+        } catch (err) {
+            jsonOutput.innerHTML = '<pre class="error">Invalid JSON: ' + err.message + '</pre>';
+        }
     });
 
     // Minify JSON button
@@ -290,8 +294,14 @@ document.addEventListener('DOMContentLoaded', function() {
             jsonInput.value = minified;
             renderJson(2); // Still show prettified in the output
         } catch (err) {
-            jsonOutput.innerHTML = '<span class="error">Invalid JSON: ' + err.message + '</span>';
+            jsonOutput.innerHTML = '<pre class="error">Invalid JSON: ' + err.message + '</pre>';
         }
+    });
+
+    // Clear JSON button
+    clearBtn.addEventListener('click', function() {
+        jsonInput.value = '';
+        jsonOutput.innerHTML = '';
     });
 
     // Initial render
